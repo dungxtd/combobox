@@ -1,11 +1,17 @@
+@font-face {
+  font-family: regular;
+  src: url("GoogleSans-Regular.otf");
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "regular";
   background-color: #fff;
+  font-size: 13px;
 }
 
 .title {

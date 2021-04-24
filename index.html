@@ -13,7 +13,7 @@
     <div class="container">
         <div class="title">Giới tính</div>
 
-        <div class="select-box">
+        <div ref={node} class="select-box">
             <div class="top-input">
                 <input type="text" class="selected" id="input-gender" value=""></input>
                 <div class="icon"></div>
@@ -22,24 +22,24 @@
 
                 <div class="option">
                     <input type="radio" class="radio" id="input-gender-male" name="category" />
-                    <label for="male">Nam</label>
+                    <label for="male" value="Nam">Nam</label>
                 </div>
 
                 <div class="option">
                     <input type="radio" class="radio" id="input-gender-female" name="category" />
-                    <label for="female">Nữ</label>
+                    <label for="female" value="Nữ">Nữ</label>
                 </div>
 
                 <div class="option">
                     <input type="radio" class="radio" id="input-gender-other" name="category" />
-                    <label for="other">Khác</label>
+                    <label for="other" Value="Khác">Khác</label>
                 </div>
             </div>
         </div>
     </div>
 
 
-
+    <script src="jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
 </body>
 

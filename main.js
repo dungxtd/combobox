@@ -12,7 +12,7 @@ function loadFilter(inputValue, dataInput) {
     }
     // console.log(output);
     for (i in output) {
-        templateString = '<div class="option"> <div class="trueIcon"></div> <input type="radio" class="radio" id="' + output[i].text + '" /> <label for="' + output[i].text + '">' + output[i].text + '</label> </div>'
+        templateString = '<div class="option"> <div class="trueIcon"></div><label for="' + output[i].text + '">' + output[i].text + '</label> </div>'
         $('.options-container').append(templateString)
     }
     if (output.length === 0) {
@@ -46,7 +46,7 @@ $('#input-gender').keyup(function (e) {
 
     if (e.keyCode === 38 && tempKey > 0) tempKey--;
     if (e.keyCode === 40) tempKey++;
-    if (e.keyCode === 8) tempKey = 0;
+    if (e.keyCode === 8) tempKey = -1;
     if (tempKey === $(".option").length) tempKey = 0;
     // console.log(tempKey);
 
@@ -61,27 +61,22 @@ $('#input-gender').keyup(function (e) {
                 $('.options-container').removeClass('active');
             }
         }
-        if (tempKey != index)
-            $(this).removeClass('selectedOption');
     })
 
     $(".option").each(function (index) {
         $(this).hover(function () {
             console.log(index);
-            $(this).addClass('selectedOption');
-            tempKey = index;
+            $(this).addClass('hoveredOption');
         })
-        if (tempKey != index)
-            $(this).removeClass('selectedOption');
         $('.option').mouseleave(function () {
-            $(this).removeClass('selectedOption');
-            tempKey = -1;
+            $(this).removeClass('hoveredOption');
         })
     })
 
     $(document).click(function (e) {
         if (!$('.select-box').is(e.target) && $('.select-box').has(e.target).length === 0) {
             $('.options-container').removeClass('active');
+            inputValue = $('#input-gender').val();
             if (!checkFilter(inputValue, dataInput)) $('#input-gender').addClass('warning');
         }
     });
@@ -104,25 +99,21 @@ $('#icon').on('click', function () {
         $(this).hover(function () {
             indexHovered = index;
             console.log(index);
-            $(this).addClass('selectedOption');
+            $(this).addClass('hoveredOption');
             if (indexHovered != index) {
-                $(this).removeClass('selectedOption');
+                $(this).removeClass('hoveredOption');
             }
         })
-
-        if (tempKey != index)
-            $(this).removeClass('selectedOption');
         $('.option').mouseleave(function () {
-            $(this).removeClass('selectedOption');
-            tempKey = -1;
+            $(this).removeClass('hoveredOption');
         })
     })
 
     $(document).click(function (e) {
         if (!$('.select-box').is(e.target) && $('.select-box').has(e.target).length === 0) {
             $('.options-container').removeClass('active');
+            inputValue = $('#input-gender').val();
             if (!checkFilter(inputValue, dataInput)) $('#input-gender').addClass('warning');
-
         }
     });
 });

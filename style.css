@@ -106,7 +106,12 @@ body {
 }
 
 .selectedOption {
-  background: #019160;
+  background: #019160 !important;
+  color: white;
+}
+
+.hoveredOption {
+  background: #ccc;
   color: white;
 }
 

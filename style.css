@@ -74,18 +74,32 @@ body {
 }
 
 .select-box .option {
-  padding: 8px 12px 8px 12px;
   cursor: pointer;
   border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.select-box .option .trueIcon {
+  width: 35px;
+  height: 35px;
+  background-image: url("checking-mark.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center;
+  display: inline-flex;
+  /* border: 1px solid #ccc; */
+  top: 0%;
+  left: 0%;
 }
 
 .select-box label {
   cursor: pointer;
 }
 
-.select-box .option:hover {
+/* .select-box .option:hover {
   background: #019160;
-}
+} */
 
 .select-box .option .radio {
   display: none;
@@ -93,6 +107,7 @@ body {
 
 .selectedOption {
   background: #019160;
+  color: white;
 }
 
 input {
@@ -100,7 +115,7 @@ input {
   outline: none;
 }
 
-input:focus {
+input:hover {
   border: 1px solid #019160;
 }
 

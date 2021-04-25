@@ -12,7 +12,7 @@ function loadFilter(inputValue, dataInput) {
     }
     // console.log(output);
     for (i in output) {
-        templateString = '<div class="option"> <input type="radio" class="radio" id="' + output[i].text + '" /> <label for="' + output[i].text + '">' + output[i].text + '</label> </div>'
+        templateString = '<div class="option"> <div class="trueIcon"></div> <input type="radio" class="radio" id="' + output[i].text + '" /> <label for="' + output[i].text + '">' + output[i].text + '</label> </div>'
         $('.options-container').append(templateString)
     }
     if (output.length === 0) {
@@ -50,7 +50,7 @@ $('#input-gender').keyup(function (e) {
     if (tempKey === $(".option").length) tempKey = 0;
     // console.log(tempKey);
 
-    // console.log(tempKey);
+    console.log(tempKey);
     // console.log(e.keyCode);
     $(".option").each(function (index) {
         if (tempKey === index) {
@@ -61,10 +61,35 @@ $('#input-gender').keyup(function (e) {
                 $('.options-container').removeClass('active');
             }
         }
+        if (tempKey != index)
+            $(this).removeClass('selectedOption');
     })
+
+    $(".option").each(function (index) {
+        $(this).hover(function () {
+            console.log(index);
+            $(this).addClass('selectedOption');
+            tempKey = index;
+        })
+        if (tempKey != index)
+            $(this).removeClass('selectedOption');
+        $('.option').mouseleave(function () {
+            $(this).removeClass('selectedOption');
+            tempKey = -1;
+        })
+    })
+
+    $(document).click(function (e) {
+        if (!$('.select-box').is(e.target) && $('.select-box').has(e.target).length === 0) {
+            $('.options-container').removeClass('active');
+            if (!checkFilter(inputValue, dataInput)) $('#input-gender').addClass('warning');
+        }
+    });
+
 })
 
 $('#icon').on('click', function () {
+    tempKey = -1;
     inputValue = $('#input-gender').val();
     // console.log(inputValue);
     loadFilter(inputValue, dataInput);
@@ -74,7 +99,35 @@ $('#icon').on('click', function () {
         $('.options-container').removeClass('active');
     })
 
+    var indexHovered;
+    $(".option").each(function (index) {
+        $(this).hover(function () {
+            indexHovered = index;
+            console.log(index);
+            $(this).addClass('selectedOption');
+            if (indexHovered != index) {
+                $(this).removeClass('selectedOption');
+            }
+        })
+
+        if (tempKey != index)
+            $(this).removeClass('selectedOption');
+        $('.option').mouseleave(function () {
+            $(this).removeClass('selectedOption');
+            tempKey = -1;
+        })
+    })
+
+    $(document).click(function (e) {
+        if (!$('.select-box').is(e.target) && $('.select-box').has(e.target).length === 0) {
+            $('.options-container').removeClass('active');
+            if (!checkFilter(inputValue, dataInput)) $('#input-gender').addClass('warning');
+
+        }
+    });
 });
+
+
 
 
 
